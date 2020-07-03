@@ -18,7 +18,8 @@ RUN apk add --no-cache \
     openssh-client \
     rsync \
     ncurses \
-    make
+    make \
+    util-linux
 
 RUN git clone https://github.com/tj/git-extras.git && \
   cd git-extras && \
