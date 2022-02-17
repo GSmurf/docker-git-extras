@@ -7,7 +7,8 @@ ARG GIT_BRANCH=-
 ARG GIT_TAG=-
 ARG GIT_COMMIT_HASH=NULL
 
-ENV GIT_BRANCH=${GIT_BRANCH} \
+ENV VER_GIT_EXTRA=6.3.0 \
+	GIT_BRANCH=${GIT_BRANCH} \
 	GIT_TAG=${GIT_TAG} \
 	GIT_COMMIT_HASH=${GIT_COMMIT_HASH} \
 	WORKDIR=/app
@@ -23,8 +24,9 @@ RUN apk add --no-cache \
 
 RUN git clone https://github.com/tj/git-extras.git && \
   cd git-extras && \
-  cd git-extras; git checkout $(git describe --tags 4.7.0) && \
-  cd git-extras ; make install PREFIX=/usr/local
+  cd git-extras; git checkout $(git describe --tags \${VER_GIT_EXTRA) && \
+  cd git-extras ; make install PREFIX=/usr/local && \
+  cd .. ; rm -rf git-extras
 
 WORKDIR $WORKDIR
 
